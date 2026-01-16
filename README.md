@@ -44,7 +44,7 @@ Score_Pulse = (0.001 × Shortwave Radiation) + (0.0333 × Wind Speed_100m)
 ### 3️⃣ Visualization
 - **Matplotlib & Seaborn**:
   - Actual vs Predicted Green Energy Pulse
-  - Cities analyzed: New York, Mumbai, Tokyo
+  - Cities analyzed: New York, Mumbai, Tokyo, Berlin, Lagos, Sao Paulo, London, Cairo, Sydney and Beijing
 
 ---
 
