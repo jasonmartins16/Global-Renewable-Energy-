@@ -1,10 +1,10 @@
-# 🌿 Green Energy Pulse: Live Forecasting System
+# 🌿 Green Energy Pulse: Forecasting System
 
 ## 📌 Project Overview
 The **Green Energy Pulse System** is a dynamic forecasting engine designed to track and predict the *"Greenness"* of a city's power grid in real-time.  
 Unlike static environmental scores, this **Pulse** fluctuates hourly based on live weather data (Solar & Wind) and grid demand.
 
-This project demonstrates how to transition from **Batch Processing** (analyzing historical data) to **Live Forecasting** (predicting the next 24 hours) using advanced feature engineering and Gradient Boosting models.
+This project demonstrates how to transition from **Batch Processing** (analyzing historical data) to **Live Forecasting** (predicting the next 24 hours/Short term forecasting system) using advanced feature engineering and Gradient Boosting models.
 
 ---
 
