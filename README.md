@@ -44,7 +44,12 @@ The model prioritizes consecutive availability. It identifies the longest contig
 To balance these competing objectives, each identified window is assigned a Rank Score. This allows the system to prioritize a "slightly less green but very stable" window over a "very green but volatile" one.
 
 ```
-$$\text{Rank Score} = \left( \frac{\mu_{\text{window}}}{\sigma^2_{\text{window}} + 0.01} \right) \times T_{\text{duration}}$$$\mu$ (Mean Score): Rewards higher overall green energy penetration.$\sigma^2$ (Variance): Penalizes volatility (stability is the denominator).$T$ (Duration): Linearly scales the value of the window by its length.
+Rank Score = (μ_window / (σ²_window + 0.01)) × T_duration
+
+μ/Mean Score: Rewards higher overall green energy penetration.
+σ²/Variance: Penalizes volatility (stability is the denominator).
+$T$/Duration: Linearly scales the value of the window by its length.
+
 ```
 
 ---
