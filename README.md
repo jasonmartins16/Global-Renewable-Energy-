@@ -48,8 +48,7 @@ Rank Score = (μ_window / (σ²_window + 0.01)) × T_duration
 
 μ/Mean Score: Rewards higher overall green energy penetration.
 σ²/Variance: Penalizes volatility (stability is the denominator).
-$T$/Duration: Linearly scales the value of the window by its length.
-
+T/Duration: Linearly scales the value of the window by its length.
 ```
 
 ---
