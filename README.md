@@ -13,6 +13,7 @@ This project demonstrates how to transition from **Batch Processing** (analyzing
 - **Cyclical Time Encoding**: Uses Trigonometric transformations (Sine/Cosine) to help the model understand 24-hour continuity.
 - **Temporal Lag Features**: Incorporates momentum using previous hours (t-1, t-2) for improved short-term accuracy.
 - **Global Scalability**: Uses geospatial data (Latitude/Longitude) to generalize across 10+ global cities.
+- **Prescriptive Optimization**: Implementing the Resilient Energy Window (REW) Algorithm that doesn't just find "green" energy, but seeks out the most stable and sustained periods for energy-intensive tasks.
 
 ---
 
@@ -26,6 +27,27 @@ Score_Pulse = (0.001 × Shortwave Radiation) + (0.0333 × Wind Speed_100m)
 
 ---
 
+## The Three Core Constraints
+
+###  Constraint 1: The Quality Threshold ($Pulse \geq \tau$)
+The system enforces a "Hard Safety" check. A window is only considered if every hour within that block maintains a Green Energy Pulse score above a user-defined threshold ($\tau$). This prevents tasks from starting during a "clean" period and finishing during a "dirty" one.
+
+### Constraint 2: The Stability Index ($\min \sigma^2$)
+Energy-intensive tasks often require consistency. The model calculates the Variance ($\sigma^2$) of the green score within the window. By minimizing variance, the system avoids "flickering" energy sources (highly volatile wind or intermittent clouds) in favor of steady, reliable green power.
+
+### Constraint 3: The Duration Factor ($\max T_{duration}$)
+The model prioritizes consecutive availability. It identifies the longest contiguous blocks of high-quality energy, ensuring that multi-hour tasks (like EV charging or industrial manufacturing) can complete without interruption.
+
+---
+
+## The Ranking Formula
+To balance these competing objectives, each identified window is assigned a Rank Score. This allows the system to prioritize a "slightly less green but very stable" window over a "very green but volatile" one.
+
+```
+$$\text{Rank Score} = \left( \frac{\mu_{\text{window}}}{\sigma^2_{\text{window}} + 0.01} \right) \times T_{\text{duration}}$$$\mu$ (Mean Score): Rewards higher overall green energy penetration.$\sigma^2$ (Variance): Penalizes volatility (stability is the denominator).$T$ (Duration): Linearly scales the value of the window by its length.
+```
+
+---
 ## 🛠️ Tech Stack & Workflow
 
 ### 1️⃣ Data Processing
@@ -55,6 +77,11 @@ Thanks to cyclical encoding, the system successfully captures:
 - Evening energy dips (Duck Curve)
 - Midday and night-time renewable surges
 
+By implementing this optimization layer, the system moves beyond observation into active load-shifting:
+- Grid Resilience: Reduces peak-hour stress by moving heavy loads to periods of high renewable surplus.
+- Operational Safety: Protects sensitive machinery by ensuring energy source stability throughout the task duration.
+- Carbon Transparency: Provides users with a "Stability Index" (0.0 to 1.0) to quantify the reliability of the green energy they are consuming.
+  
 ---
 
 ## 🔮 Future Roadmap
